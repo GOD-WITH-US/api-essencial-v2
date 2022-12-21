@@ -1,13 +1,13 @@
 // ici je vais gèrer l'inscription la connection et déconnection des utilisateurs 
 
-//chargement du module UserModel
+//loading module UserModel
 const UserModel = require('../models/user.model');
 
 
 
 
 module.exports.signUp = async(req, res) => {
-    console.log("log of req.body=",req.body);
+    console.log("log authcontroller",req.body);
 const {pseudo , email , password} = req.body
 
 try {
