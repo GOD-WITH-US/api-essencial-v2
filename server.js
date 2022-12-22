@@ -1,26 +1,24 @@
 //loading module dotenv and load my files from .env
 require("dotenv").config({ path: "./config/.env" });
-//loading body-parser middleware 
-const bodyParser = require('body-parser');
+//loading body-parser middleware
+const bodyParser = require("body-parser");
 
 //loading express framwork
 const express = require("express");
 //create app on express framework
 const app = express();
-//loading routes  
+//loading routes
 const userRoutes = require("./routes/user.routes");
 
 //use body-parser for format req.body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //require db.js to connect to mongoDB
 require("./config/db");
 
 //routes
-app.use('/api/user', userRoutes);
+app.use("/api/user", userRoutes);
 
 //Server
 
