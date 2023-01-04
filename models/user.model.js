@@ -1,3 +1,4 @@
+/* Ici je définit un schéma Mongoose pour un modèle d'utilisateur, avec différents champs */
 
 //loading mongoose
 const mongoose = require('mongoose');
@@ -54,12 +55,18 @@ const userSchema = new mongoose.Schema(
 );
 
 // play function before save into DB
+
+/* The userSchema.pre("save", ...) function is a Mongoose middleware that runs before the user document is saved to the database.
+ It hashes the user's password with bcrypt and assigns the hashed password to the password field. */
 userSchema.pre("save", async function(next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
+/* The userSchema.statics.login function is a static method that can be called on the user model.
+ It attempts to find a user with the provided email and then compares the provided password to the hashed password in the user document using bcrypt. 
+ If the passwords match, it returns the user document. If the email is not found or the passwords do not match, it throws an error. */
 userSchema.statics.login = async function(email, password) {
   const user = await this.findOne({ email });
   if (user) {

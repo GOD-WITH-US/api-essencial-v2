@@ -3,7 +3,7 @@ require("dotenv").config({ path: "./config/.env" });
 //loading body-parser middleware
 const bodyParser = require("body-parser");
 
-//loading express framwork
+//loading express framework
 const express = require("express");
 //create app on express framework
 const app = express();
@@ -20,7 +20,6 @@ require("./config/db");
 //routes
 app.use("/api/user", userRoutes);
 
-//Server
 
 //Start server and listen to a given Port
 app.listen(process.env.PORT, () => {
