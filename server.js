@@ -1,18 +1,31 @@
+//loading express framework
+const express = require("express");
+
 //loading module dotenv and load my files from .env
 require("dotenv").config({ path: "./config/.env" });
+
 //loading body-parser middleware
 const bodyParser = require("body-parser");
 
-//loading express framework
-const express = require("express");
+//loading cookie-parser middleware
+const cookieParser = require('cookie-parser');
+
+//loading auth middleware 
+const {checkUser, requireAuth} = require('./middleware/auth.middleware');
+
 //create app on express framework
 const app = express();
+
 //loading routes
 const userRoutes = require("./routes/user.routes");
 
-//use body-parser for format req.body
+// Enable JSON data parsing in request body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// Enable URL-encoded data parsing in request body, with support for nested objects
+app.use(bodyParser.urlencoded({extended: true}));
+// Enable cookie parsing in request headers
+app.use(cookieParser());
+
 
 //require db.js to connect to mongoDB
 require("./config/db");
