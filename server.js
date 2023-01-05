@@ -1,6 +1,9 @@
 //loading express framework
 const express = require("express");
 
+//create app on express framework
+const app = express();
+
 //loading module dotenv and load my files from .env
 require("dotenv").config({ path: "./config/.env" });
 
@@ -10,14 +13,10 @@ const bodyParser = require("body-parser");
 //loading cookie-parser middleware
 const cookieParser = require('cookie-parser');
 
-//loading auth middleware 
-const {checkUser, requireAuth} = require('./middleware/auth.middleware');
-
-//create app on express framework
-const app = express();
-
-//loading routes
+//loading user routes
 const userRoutes = require("./routes/user.routes");
+//loading post routes
+const postRoutes = require('./routes/post.routes');
 
 // Enable JSON data parsing in request body
 app.use(bodyParser.json());
@@ -25,6 +24,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // Enable cookie parsing in request headers
 app.use(cookieParser());
+
+//loading auth middleware 
+const {checkUser, requireAuth} = require('./middleware/auth.middleware');
+
+// jwt
+app.get('*', checkUser);
+app.get('/jwtid', requireAuth, (req, res) => {
+  res.status(200).send(res.locals.user._id)
+});
 
 
 //require db.js to connect to mongoDB

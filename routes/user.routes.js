@@ -1,3 +1,6 @@
+/* Ici je  définit un routeur Express avec plusieurs routes pour gérer l'authentification,
+les actions de base de données d'utilisateur et les téléchargements de fichiers.*/
+
 //loading express router
 const router = require("express").Router();
 
