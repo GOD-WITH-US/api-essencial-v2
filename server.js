@@ -40,7 +40,7 @@ require("./config/db");
 
 //routes
 app.use("/api/user", userRoutes);
-
+app.use('/api/post', postRoutes);
 
 //Start server and listen to a given Port
 app.listen(process.env.PORT, () => {

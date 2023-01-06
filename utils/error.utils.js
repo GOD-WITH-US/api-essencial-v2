@@ -41,3 +41,16 @@ module.exports.signUpErrors = (err) => {
     return errors;
   };
   
+  module.exports.uploadErrors = (err) => {
+    let errors = { format: "", maxSize: "" };
+  
+    if (err.message.includes("Invalid file type")) {
+      errors.format = "Le fichier téléchargé n'est pas un format d'image valide (JPG, PNG ou JPEG)";
+    }
+  
+    if (err.message.includes("File size exceeded maximum limit")) {
+      errors.maxSize = "La taille du fichier téléchargé dépasse la limite maximale de 500KB";
+    }
+  
+    return errors;
+  };
