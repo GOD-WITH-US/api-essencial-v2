@@ -146,7 +146,6 @@ module.exports.unfollow = async (req, res) => {
     // Return a response with a 204 status code to indicate that the request was successful
     // and that the server has fulfilled the request, but does not need to return an entity-body
     res.sendStatus(204);
-
   } catch (err) {
     // If there is an error, return a response with a 500 status code and the error message
     return res.status(500).json({ message: err });

@@ -6,7 +6,7 @@ const UserModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
 // Import the error handling functions from the error.utils module
-const { signUpErrors, signInErrors } = require('../utils/error.utils');
+const { signUpErrors, signInErrors } = require("../utils/error.utils");
 
 // The auth token will be valid for 3 days before expiry
 const maxAge = 3 * 24 * 60 * 60 * 1000;

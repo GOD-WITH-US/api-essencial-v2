@@ -10,6 +10,13 @@ const authController = require("../controllers/auth.controller");
 //loading userController
 const userController = require("../controllers/user.controller");
 
+//loading uploadController
+const uploadController = require("../controllers/upload.controller");
+
+//Loading multer
+const multer = require("multer");
+const upload = multer();
+
 // route for registry
 router.post("/register", authController.signUp);
 // route for login
@@ -31,6 +38,8 @@ router.patch("/follow/:id", userController.follow);
 //route for unfollow
 router.patch("/unfollow/:id", userController.unfollow);
 
+// upload
+router.post("/upload", upload.single("file"), uploadController.uploadProfil);
 
 //on rend notre module disponible dans toute l'app
 module.exports = router;

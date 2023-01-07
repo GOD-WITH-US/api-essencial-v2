@@ -23,7 +23,7 @@ module.exports.readPost = async (req, res) => {
 module.exports.createPost = async (req, res) => {
   let fileName;
 
-// check if the file being uploaded is an image with a valid file type and size
+  // check if the file being uploaded is an image with a valid file type and size
   if (req.file !== null) {
     try {
       if (
@@ -51,13 +51,12 @@ module.exports.createPost = async (req, res) => {
       )
     );
   }
- 
+
   // create a new instance of postModel
   const newPost = new PostModel({
     posterId: req.body.posterId,
     message: req.body.message,
     category: req.body.category,
-    // set the picture field to the path of the file if it exists, otherwise set it to an empty string
     picture: req.file !== null ? `./uploads/posts/${fileName}` : "",
     video: req.body.video,
     likers: [],
@@ -65,7 +64,6 @@ module.exports.createPost = async (req, res) => {
   });
 
   try {
-
     // save the new instance to the database and send it in the response
     const post = await newPost.save();
     res.status(201).json(post);

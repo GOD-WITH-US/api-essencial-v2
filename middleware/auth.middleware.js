@@ -45,7 +45,7 @@ module.exports.requireAuth = (req, res, next) => {
       // If the token is invalid...
       if (err) {
         // Send an error to the client
-        res.send(200).json('no token');
+        res.send(200).json("no token");
       } else {
         // If the token is valid, go to the next middleware
         console.log(decodedToken.id);
@@ -54,6 +54,6 @@ module.exports.requireAuth = (req, res, next) => {
     });
   } else {
     // If no token was found, send an error to the client
-    console.log('No token');
+    console.log("No token");
   }
 };
