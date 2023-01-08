@@ -1,3 +1,5 @@
+//ici je gere mon CRUD uploads
+
 //Import the User model from a local file
 const UserModel = require("../models/user.model");
 

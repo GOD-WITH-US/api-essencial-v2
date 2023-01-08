@@ -10,6 +10,7 @@ require("dotenv").config({ path: "./config/.env" });
 //require db.js to connect to mongoDB
 require("./config/db");
 
+
 //loading body-parser middleware
 const bodyParser = require("body-parser");
 
@@ -31,11 +32,28 @@ app.use(cookieParser());
 //loading auth middleware
 const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 
+//loading cors 
+const cors = require('cors');
+
 // jwt
 app.get("*", checkUser);
 app.get("/jwtid", requireAuth, (req, res) => {
   res.status(200).send(res.locals.user._id);
 });
+
+//Cors
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'exposedHeaders': ['sessionId'],
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}
+
+app.use(cors(corsOptions));
+
+
 
 //routes
 app.use("/api/user", userRoutes);
