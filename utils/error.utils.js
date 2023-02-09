@@ -35,7 +35,7 @@ module.exports.signInErrors = (err) => {
   }
 
   if (err.message.includes("password")) {
-    errors.password = "Le mot de passe ne correspond pas à cette adresse email";
+    errors.password = "Le mot de passe ne correspond pas ";
   }
 
   return errors;

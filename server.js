@@ -36,11 +36,12 @@ const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 const cors = require('cors');
 
 // jwt
-app.get("*", checkUser);
-app.get("/jwtid", requireAuth, (req, res) => {
-  res.status(200).send(res.locals.user._id);
+app.get('*', checkUser);
+app.get('/jwtid', requireAuth, (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL);
+  res.header("Access-Control-Allow-Credentials", true);
+  res.status(200).send(res.locals.user._id)
 });
-
 //Cors
 const corsOptions = {
   origin: process.env.CLIENT_URL,
@@ -52,7 +53,6 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
-
 
 
 //routes
