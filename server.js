@@ -56,8 +56,16 @@ app.use(cors(corsOptions));
 
 
 //routes
+/* control tools 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+}); */
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
+app.use('/uploads/profil', express.static('client/public/uploads/profil'));
+
+
 
 //Start server and listen to a given Port
 app.listen(process.env.PORT, () => {

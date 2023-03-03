@@ -34,4 +34,5 @@ router.patch("/edit-comment-post/:id", postController.editCommentPost);
 // Delete a comment on a post with a specified ID
 router.patch("/delete-comment-post/:id", postController.deleteCommentPost);
 
+// we make our module available throughout the app
 module.exports = router;

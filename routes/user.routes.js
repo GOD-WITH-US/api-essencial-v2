@@ -41,5 +41,5 @@ router.patch("/unfollow/:id", userController.unfollow);
 // upload
 router.post("/upload", upload.single("file"), uploadController.uploadProfil);
 
-//on rend notre module disponible dans toute l'app
+// we make our module available throughout the app
 module.exports = router;
