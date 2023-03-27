@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use('/uploads/profil', express.static('client/public/uploads/profil'));
-
+app.use('/uploads/posts', express.static('client/public/uploads/posts'));
 
 
 //Start server and listen to a given Port

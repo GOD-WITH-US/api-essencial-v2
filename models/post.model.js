@@ -11,6 +11,11 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+   title: {
+      type: String,
+      trim: true,
+      maxlength: 50,
+    },
     message: {
       type: String,
       trim: true,
