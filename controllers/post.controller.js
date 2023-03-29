@@ -23,7 +23,7 @@ module.exports.readPost = async (req, res) => {
 // exports a function that creates a new post
 module.exports.createPost = async (req, res) => {
   let fileName;
-
+  console.log("createpost");
   // check if the file being uploaded is an image with a valid file type and size
   if (req.file !== null) {
     try {
@@ -57,13 +57,14 @@ module.exports.createPost = async (req, res) => {
   const newPost = new PostModel({
     posterId: req.body.posterId,
     title: req.body.title,
-    message: req.body.message,
+    text: req.body.text,
     category: req.body.category,
     picture: req.file !== null ? `./uploads/posts/${fileName}` : "",
     video: req.body.video,
     likers: [],
     comments: [],
   });
+  console.log(newPost);
 
   try {
     // save the new instance to the database and send it in the response
@@ -84,7 +85,7 @@ module.exports.updatePost = async (req, res) => {
   try {
     // update the post with the given ID
     const updatedPost = await PostModel.findByIdAndUpdate(req.params.id, {
-      message: req.body.message,
+      text: req.body.text,
     });
     res.send(updatedPost);
   } catch (err) {

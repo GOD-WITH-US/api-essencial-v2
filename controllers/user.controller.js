@@ -12,7 +12,7 @@ module.exports.getAllUsers = async (req, res) => {
   const users = await UserModel.find().select("-password");
 
   // Log the retrieved users to the console
-  console.log(" usercontroller log", users);
+  /* console.log(" usercontroller log", users); */
 
   // Return a response with a 200 status code and the retrieved users
   res.status(200).json(users);

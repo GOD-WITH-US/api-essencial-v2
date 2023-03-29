@@ -7,19 +7,19 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    category: {
-      type: String,
-      required: true,
-    },
-   title: {
+    title: {
       type: String,
       trim: true,
       maxlength: 50,
     },
-    message: {
+    text: {
       type: String,
-      trim: true,
-      maxlength: 500,
+      //trim: true, élimine les espaces
+      maxlength: 2000,
+    },
+    category: {
+      type: String,
+      required: true,
     },
     picture: {
       type: String,
