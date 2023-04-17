@@ -12,6 +12,8 @@ const upload = multer();
 
 // Set up routes for interacting with posts
 
+// Retrieve a post with a specified ID
+router.get("/:id", postController.getPostById);
 // Retrieve list of posts
 router.get("/", postController.readPost);
 // Create a new post with a file

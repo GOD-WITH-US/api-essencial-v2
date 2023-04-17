@@ -9,6 +9,20 @@ const fs = require("fs");
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
 
+module.exports.getPostById = async (req, res) => { // Exporting an async that fetches one post with its id 
+  try {
+    const postId = req.params.id; // Extracting the post ID from the request parameters
+    const post = await PostModel.findById(postId); // Finding a post with the extracted ID using the PostModel
+    if (!post) { // If no post was found, return a 404 status and a message
+      return res.status(404).send({ message: "Post not found" });
+    }
+    res.send(post); // If a post was found, send it as the response
+  } catch (err) { // If an error occurs while retrieving the post, log the error and send a 500 status and message
+    console.log(`Error getting post: ${err}`);
+    res.status(500).send({ message: "Error getting post" });
+  }
+};
+
 // exports a function that fetches all the posts from the database,
 // sorts them in descending order of creation time, and sends them in the response
 module.exports.readPost = async (req, res) => {
@@ -43,6 +57,8 @@ module.exports.createPost = async (req, res) => {
     }
     // set fileName to the ID of the poster + current timestamp + .jpg
     fileName = `${req.body.posterId}${Date.now()}.jpg`;
+
+  
 
     // save the file to the server
     await pipeline(
